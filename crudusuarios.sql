@@ -20,3 +20,9 @@ CREATE TABLE usuario(
 --
 ALTER TABLE usuario ADD PRIMARY KEY(id);
 ALTER TABLE usuario ADD UNIQUE(username), ADD UNIQUE(rut);
+
+--
+-- TESTING OF DATA
+--
+INSERT INTO usuario(rut, apllidos, nombre, nacionalidad, sexo, fchnacimiento, username, userpass)
+	VALUES('11111111-1', 'testing', 'prueba', 'extranjera', 'PND', '11-12-1993', 'informatica', 'test');
