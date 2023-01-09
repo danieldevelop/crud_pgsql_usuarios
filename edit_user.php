@@ -5,7 +5,38 @@ require_once './includes/functions.php';
 
 $a_usuario = buscarUsuario((int) $_GET['id']); // Si no lo convierte a int data error
 
+if (isset($_POST['btn-actualizar'])) 
+{
+    $id = $_POST['inpId'];
+    $rut = $_POST['inpRut'];
+    $apellidos = $_POST['inpApellidos'];
+    $nombre = $_POST['inpNombre'];
+    $nacionalidad = $_POST['inpNacionalidad'];
+    $fchnacimiento = $_POST['inpFchNacimiento'];
+    $sexo = (isset($_POST['inpSexo'])) ? $_POST['inpSexo'] : null;
+    $username = $_POST['inpUsername'];
+    $password = $_POST['inpPassword'];
+    
+    $sql ="UPDATE usuario SET ";
+    $sql.="rut = '$rut', apllidos = '$apellidos', nombre = '$nombre', nacionalidad = '$nacionalidad', sexo = '$sexo', ";
+    $sql.="fchnacimiento = '$fchnacimiento', username = '$username', userpass = '$password' ";
+    $sql.="WHERE id = $id; ";
+    $result = pg_query($conexionDatabase, $sql);
+    
+    if ($result) {
+        echo '<script>
+            window.alert("Usuario actualizado con exito");
+            window.location.href = "./";
+        </script>';
+    } else {
+        echo '<script>
+            window.alert("Error al actualizar usuario");
+            window.location.href = "./edit_user.php";
+        </script>';
+    }
+}
 ?>
+
 
 <!doctype html>
 <html lang="es">
