@@ -30,3 +30,19 @@ function listarUsuario() {
     
     return $campos;
 }
+
+
+function buscarUsuario($id) {
+    global $conexionDatabase;
+    
+    $sql ="SELECT u.id, u.rut, u.apllidos, u.nombre, u.nacionalidad, u.sexo, u.fchnacimiento, u.username, ";
+    $sql.="u.userpass ";
+    $sql.="FROM usuario u ";
+    $sql.="WHERE id = {$id}; ";
+
+    $result = pg_query($conexionDatabase, $sql);
+//     por defecto viene PGSQL_BOTH en el fetch_array, si no se le associa un PGSQL_NUM o PGSQL_ASSOC
+    $fila = pg_fetch_array($result);
+    
+    return $fila;
+}
